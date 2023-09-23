@@ -27,7 +27,7 @@ export default function Topbar() {
                 </div>
                 <OrganizationSwitcher
                     appearance={{
-                        baseTheme: dark,
+                        baseTheme: dar
                         elements: {
                         organizationSwitcherTrigger: "py-2 px-4",
                         },
