@@ -1,0 +1,14 @@
+async function Page() {
+
+  return (
+    <main className="max-w-3xl mx-auto flex flex-col px-10 py-20">
+      <h1 className="head-text">onboarding</h1>
+      <p className="text-base-regular mt-3 text-light-2">Complete your account to use Zreads</p>
+      <section className="bg-dark-2 p-">
+
+      </section>
+    </main>
+  );
+}
+
+export default Page;
