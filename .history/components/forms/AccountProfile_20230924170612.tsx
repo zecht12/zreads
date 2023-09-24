@@ -7,8 +7,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import profile from '@/public/assets/profile.svg'
-import {Form,FormControl,FormField,FormItem,FormLabel,FormMessage,} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import {Form,FormControl,FormField,FormItem,FormLabel,FormMessage,
+} from "@/components/ui/form";
+import { nput } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -54,6 +55,15 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
             values.profile_photo = imgRes[0].fileUrl;
             }
         }
+        await updateUser({
+            name: values.name,
+            path: pathname,
+            username: values.username,
+            userId: user.id,
+            bio: values.bio,
+            image: values.profile_photo,
+        });
+    
         if (pathname === "/profile/edit") {
             router.back();
         } else {

@@ -3,7 +3,7 @@
     
     const f = createUploadthing();
     
-    const getUser = async () => await currentUser();
+    const getUser =async () => await currentUser();
     
     // FileRouter for your app, can contain multiple FileRoutes
     export const ourFileRouter = {
@@ -12,7 +12,7 @@
         // Set permissions and file types for this FileRoute
         .middleware(async ({ req }) => {
         // This code runs on your server before upload
-        const user = await getUser();
+        const user = await g(req);
     
         // If you throw, the user will not be able to upload
         if (!user) throw new Error("Unauthorized");

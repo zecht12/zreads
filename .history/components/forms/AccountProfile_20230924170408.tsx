@@ -7,14 +7,21 @@ import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import profile from '@/public/assets/profile.svg'
-import {Form,FormControl,FormField,FormItem,FormLabel,FormMessage,} from "@/components/ui/form";
+
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 import { isBase64Image } from "@/lib/utils";
 import { UserValidation } from "@/lib/validation/user";
-import { useUploadThing } from "@/lib/uploadthing";
 
 interface Props {
     user: {
@@ -38,44 +45,45 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     const form = useForm<z.infer<typeof UserValidation>>({
         resolver: zodResolver(UserValidation),
         defaultValues: {
-            profile_photo: user?.image ? user.image : "",
-            name: user?.name ? user.name : "",
-            username: user?.username ? user.username : "",
-            bio: user?.bio ? user.bio : "",
+        profile_photo: user?.image ? user.image : "",
+        name: user?.name ? user.name : "",
+        username: user?.username ? user.username : "",
+        bio: user?.bio ? user.bio : "",
         },
     });
 
     const onSubmit = async (values: z.infer<typeof UserValidation>) => {
         const blob = values.profile_photo;
+
         const hasImageChanged = isBase64Image(blob);
-        if (hasImageChanged) {
-            const imgRes = await startUpload(files);
-            if (imgRes && imgRes[0].fileUrl) {
-            values.profile_photo = imgRes[0].fileUrl;
-            }
-        }
+
         if (pathname === "/profile/edit") {
-            router.back();
+        router.back();
         } else {
-            router.push("/");
+        router.push("/");
         }
     };
 
     const handleImage = (
         e: ChangeEvent<HTMLInputElement>,
         fieldChange: (value: string) => void
-        ) => {
+    ) => {
         e.preventDefault();
+
         const fileReader = new FileReader();
+
         if (e.target.files && e.target.files.length > 0) {
-            const file = e.target.files[0];
-            setFiles(Array.from(e.target.files));
-            if (!file.type.includes("image")) return;
-            fileReader.onload = async (event) => {
+        const file = e.target.files[0];
+        setFiles(Array.from(e.target.files));
+
+        if (!file.type.includes("image")) return;
+
+        fileReader.onload = async (event) => {
             const imageDataUrl = event.target?.result?.toString() || "";
             fieldChange(imageDataUrl);
-            };
-            fileReader.readAsDataURL(file);
+        };
+
+        fileReader.readAsDataURL(file);
         }
     };
 

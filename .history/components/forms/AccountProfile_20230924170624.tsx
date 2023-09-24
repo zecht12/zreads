@@ -54,6 +54,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
             values.profile_photo = imgRes[0].fileUrl;
             }
         }
+    
         if (pathname === "/profile/edit") {
             router.back();
         } else {
