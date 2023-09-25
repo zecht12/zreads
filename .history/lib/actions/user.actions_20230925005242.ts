@@ -13,12 +13,9 @@ export async function updateUser(userId: string, image: string, path: string,bio
         {id: userId},
         {
             sernameL: username.toLowerCase(),
-            name,
-            bio,
-            path,
-            image,
-            onboard: true,
         },
-        {upsert: true},
+        name,
+        bio,
+        onboard: true,
     )
 }

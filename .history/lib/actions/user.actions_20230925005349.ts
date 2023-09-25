@@ -19,6 +19,6 @@ export async function updateUser(userId: string, image: string, path: string,bio
             image,
             onboard: true,
         },
-        {upsert: true},
+        upser
     )
 }
