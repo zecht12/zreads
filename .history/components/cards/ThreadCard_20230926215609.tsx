@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { formatDateString } from "@/lib/utils";
 import DeleteThread from "../forms/DeleteThread";
 
@@ -45,8 +46,10 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
                     className='cursor-pointer rounded-full'
                 />
                 </Link>
+
                 <div className='thread-card_bar' />
             </div>
+
             <div className='flex w-full flex-col'>
                 <Link href={`/profile/${author.id}`} className='w-fit'>
                 <h4 className='cursor-pointer text-base-semibold text-light-1'>
@@ -87,6 +90,7 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
                     className='cursor-pointer object-contain'
                     />
                 </div>
+
                 {isComment && comments.length > 0 && (
                     <Link href={`/thread/${id}`}>
                     <p className='mt-1 text-subtle-medium text-gray-1'>
@@ -97,6 +101,7 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
                 </div>
             </div>
             </div>
+
             <DeleteThread
             threadId={JSON.stringify(id)}
             currentUserId={currentUserId}
@@ -105,6 +110,7 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
             isComment={isComment}
             />
         </div>
+
         {!isComment && comments.length > 0 && (
             <div className='ml-1 mt-3 flex items-center gap-2'>
             {comments.slice(0, 2).map((comment, index) => (
@@ -117,6 +123,7 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
                 className={`${index !== 0 && "-ml-5"} rounded-full object-cover`}
                 />
             ))}
+
             <Link href={`/thread/${id}`}>
                 <p className='mt-1 text-subtle-medium text-gray-1'>
                 {comments.length} repl{comments.length > 1 ? "ies" : "y"}
@@ -124,6 +131,7 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
             </Link>
             </div>
         )}
+
         {!isComment && community && (
             <Link
             href={`/communities/${community.id}`}
@@ -133,6 +141,7 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
                 {formatDateString(createdAt)}
                 {community && ` - ${community.name} Community`}
             </p>
+
             <Image
                 src={community.image}
                 alt={community.name}

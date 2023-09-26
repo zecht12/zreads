@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { formatDateString } from "@/lib/utils";
 import DeleteThread from "../forms/DeleteThread";
 
@@ -133,6 +134,7 @@ function ThreadCard({id,currentUserId,parentId,content,author,community,createdA
                 {formatDateString(createdAt)}
                 {community && ` - ${community.name} Community`}
             </p>
+
             <Image
                 src={community.image}
                 alt={community.name}
