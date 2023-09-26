@@ -14,9 +14,9 @@ async function Home() {
           <p className="no-result">No thread founds</p>
         ):(
           <>
-            {/* {result.posts.map((post) => (
+            {result.posts.map((post) => (
               // <ThreadCard key={post._id} id={post._id} currentUserId={user.id} parentId={post.parentId} content={post.text} author={post.author} community={post.community} createdAt={post.createdAt} comments={post.children}/>
-            ))} */}
+            ))}
           </>
         )}
       </section>
