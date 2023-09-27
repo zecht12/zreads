@@ -50,7 +50,7 @@ export async function updateUser({userId,bio,name,path,username,image,}: Params)
         revalidatePath(path);
         }
     } catch (error: any) {
-        throw new Error(`Failed to create/update user: ${error.message}`);
+        throw Error(`Failed to create/update user: ${error.message}`);
     }
     }
 

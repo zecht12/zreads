@@ -6,6 +6,7 @@ import Community from "../models/community.model";
 import Thread from "../models/thread.model";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
+import Error from "next/error";
 
 export async function fetchUser(userId: string) {
     try {
@@ -50,7 +51,7 @@ export async function updateUser({userId,bio,name,path,username,image,}: Params)
         revalidatePath(path);
         }
     } catch (error: any) {
-        throw new Error(`Failed to create/update user: ${error.message}`);
+        Error
     }
     }
 
