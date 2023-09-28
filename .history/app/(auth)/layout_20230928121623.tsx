@@ -16,7 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({children,}: {children: React.ReactNode;}) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <ClerkProvider
       appearance={{
@@ -24,11 +28,7 @@ export default function RootLayout({children,}: {children: React.ReactNode;}) {
       }}
     >
       <html lang='en'>
-        <body className={`${inter.className} bg-dark-1`}>
-          <div className="flex items-center justify-center">
-            {children}
-          </div>
-        </body>
+        <body className={`${inter.className} bg-dark-1`}>{children}</body>
       </html>
     </ClerkProvider>
   );
